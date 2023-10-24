@@ -14,6 +14,8 @@ FOREIGN KEY (id_estrategia) REFERENCES tb_estrategia(id)
 
 CREATE TABLE tb_estrategia(
 id BINARY(16) NOT NULL,
+id_usuario BINARY(16) NOT NULL,
+id_erro BINARY(16) NOT NULL,
 nome_estrategia VARCHAR(255) NOT NULL,
 data_estrategia DATETIME NOT NULL, 
 descricao_estrategia VARCHAR(255) NOT NULL, 
@@ -22,7 +24,7 @@ FOREIGN KEY (id_erro) REFERENCES tb_erro(id),
 PRIMARY KEY (id)
 );
 
-SELECT * FROM tb_estrategia;
+
 
 CREATE TABLE tb_erro(
 id BINARY(16) NOT NULL,
@@ -33,10 +35,9 @@ status_erro VARCHAR(255) NOT NULL,
 PRIMARY KEY (id)
 );
 
-
-
 CREATE TABLE tb_alerta(
 id BINARY(16) NOT NULL,
+id_erro BINARY(16) NOT NULL,
 nome_alerta VARCHAR(255) NOT NULL, 
 nivel_criticidade CHAR(255) NOT NULL,
 data_alerta DATETIME NOT NULL,
@@ -46,8 +47,11 @@ FOREIGN KEY (id_erro) REFERENCES tb_erro(id),
 PRIMARY KEY (id)
 );
 
+SELECT * FROM tb_planta_erro;
+
 CREATE TABLE tb_planta_erro(
 id BINARY(16) NOT NULL,
+id_planta BINARY(16) NOT NULL,
 descricao VARCHAR(255) NOT NULL,
 FOREIGN KEY (id_planta) REFERENCES tb_planta(id),
 PRIMARY KEY (id)
